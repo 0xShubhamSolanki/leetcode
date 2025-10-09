@@ -1,0 +1,43 @@
+//two pointer approch tc-O(n+m) sc-O(1)
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+      int i = 0, j = 0;     
+        while (j < typed.length()) {
+            if (i < name.length() && name.charAt(i) == typed.charAt(j)) {
+                i++;
+                j++;
+            } else if (j > 0 && typed.charAt(j) == typed.charAt(j - 1)) {
+                j++;
+            } else {
+                return false;
+            }
+        }
+        return i == name.length();
+    }
+}
+
+//Frequency Approch
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+        int i = 0, j = 0;
+        while (i < name.length() && j < typed.length()) {
+            if (name.charAt(i) != typed.charAt(j)) return false;
+            
+            char c = name.charAt(i);
+            int count1 = 0;
+            while (i < name.length() && name.charAt(i) == c) {
+                count1++;
+                i++;
+            }
+            
+            int count2 = 0;
+            while (j < typed.length() && typed.charAt(j) == c) {
+                count2++;
+                j++;
+            }
+            
+            if (count2 < count1) return false;
+        }
+        return i == name.length() && j == typed.length();
+    }
+}
