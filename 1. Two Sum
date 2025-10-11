@@ -1,0 +1,47 @@
+//Brute Forach approch Tc- O(N2)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[] {i, j};
+                }
+            }
+        }
+        return new int[] {}; //empty array
+    }
+}
+
+//hashmap approch tc - 0(n) sc-O(n)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+     Map<Integer,Integer> mp = new HashMap<>();
+     for(int i =0;i<nums.length;i++){
+        int comp = target - nums[i];
+        if(mp.containsKey(comp)){
+            return new int[]{mp.get(comp),i};
+        }
+         mp.put(nums[i], i);
+     }   
+     return new int[]{};
+    }
+}
+
+//Sorting + 2 pointer approch tc O(nlog n) sc - O(1)
+import java.util.*;
+
+class Solution {
+    public int[] twoSumSorted(int[] nums, int target) {
+        Arrays.sort(nums); // loses original indices
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == target) return new int[]{nums[left], nums[right]};
+            else if (sum < target) left++;
+            else right--;
+        }
+        return new int[]{};
+    }
+}
+
+//
