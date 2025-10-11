@@ -1,0 +1,50 @@
+
+//Using Sorted String as Key TC: O(n * k log k), n = number of strings, k = max length of string  Sc: O(n * k)
+import java.util.*;
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        // Map to store sorted string as key and list of anagrams as value
+        Map<String, List<String>> map = new HashMap<>();
+        
+        for (String s : strs) {
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
+            String key = new String(arr);
+            
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(s);
+        }
+        
+        return new ArrayList<>(map.values());
+    }
+}
+
+
+//Using Character Count as Key (Optimized) TC: O(n * k), n = number of strings, k = max length of string  Sc: O(n * k)
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+     Map<String, List> mp = new HashMap<>();
+     int[] count = new int[26];
+     for(String st:strs){
+        Arrays.fill(count,0);
+        for(char ch:st.toCharArray()){
+            count[ch-'a']++;
+        }
+        StringBuilder sb = new StringBuilder("");
+        for(int i =0;i<26;i++){
+            sb.append(',');
+            sb.append(count[i]);
+        }
+        String key =sb.toString();
+        if(!mp.containsKey(key))
+        {
+          mp.put(key,new ArrayList());
+        } 
+        mp.get(key).add(st);
+       } 
+      return new ArrayList(mp.values());
+      }
+    }
