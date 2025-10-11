@@ -1,0 +1,40 @@
+// 2 loop tc O (n2)
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) return true;
+            }
+        }
+        return false;
+    }
+}
+
+// Sorting Array TC O(n log n) SC - O(1)
+import java.util.*;
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) return true;
+        }
+        return false;
+    }
+}
+
+// hashSet tc -O(n) sc -O(n)
+import java.util.*;
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> seen = new HashSet<>();
+        for (int num : nums) {
+            if (seen.contains(num)) {
+                return true; // duplicate found
+            }
+            seen.add(num);
+        }
+        return false; // all unique
+    }
+}
