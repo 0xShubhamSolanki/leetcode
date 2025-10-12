@@ -1,0 +1,47 @@
+//Sorting +HashMap TC -O(n log n) SC -O(n)
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        if(k == nums.length)return nums; 
+        Map<Integer,Integer> fmp =new HashMap<>();
+       
+        for(int n:nums){
+            fmp.put(n,fmp.getOrDefault(n,0)+1);
+        }
+
+        List<Map.Entry<Integer,Integer>> ls = new ArrayList<>(fmp.entrySet());
+         ls.sort((a,b)->b.getValue() -a.getValue());
+
+         int top[] = new int[k];
+          for (int i = 0; i < k; i++) {
+            top[i] = ls.get(i).getKey();
+        }
+        return top;
+    }
+}
+
+//min-heap (PriorityQueue) TC-O(n log K SC -O(n)
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        if(k == nums.length)return nums; 
+        Map<Integer,Integer> fmp =new HashMap<>();
+       
+        for(int n:nums){
+            fmp.put(n,fmp.getOrDefault(n,0)+1);
+        }
+
+       Queue<Integer> PQ = new PriorityQueue<>(
+        (n1,n2) -> fmp.get(n1) - fmp.get(n2)
+        );
+         
+         for (int n : fmp.keySet()) {
+         PQ.add(n);
+          if (PQ.size() > k)
+         PQ.poll(); 
+}
+        int[] top = new int[k];
+        for(int i =k-1;i>=0;i--){
+            top[i] = PQ.poll();
+        }
+        return top;
+    }
+}
