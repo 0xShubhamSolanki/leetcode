@@ -1,0 +1,28 @@
+Tc O(N) SC O(1)
+
+Code
+//forward approch
+class Solution {
+    public boolean canJump(int[] nums) {
+        int maxJ =0;
+        for(int i =0;i<nums.length;i++){
+            if(maxJ<i) return false;
+            maxJ =Math.max(maxJ,nums[i]+i);
+            if(maxJ>=nums.length-1)
+             return true;
+        }
+        return true;
+    }
+}
+Code
+//backward approch
+class Solution {
+    public boolean canJump(int[] nums) {
+            int goal = nums.length - 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (i + nums[i] >= goal)
+                goal = i;
+        }
+        return goal == 0;
+   }
+}
