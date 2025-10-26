@@ -1,0 +1,47 @@
+Approach	Time Complexity 	Space Complexity	
+Two Pointers 	O(n)	O(1)
+StringBuilder	O(n)	O(n)	Simple but uses extra space.
+Stack	        O(n)	O(n)
+
+# Code
+```java []
+class Solution {
+    public void reverseString(char[] s) {
+       int l=0;int r=s.length-1;
+       while(l<r){
+         char temp = s[l];
+         s[l] = s[r];
+         s[r] = temp;
+         l++;r--;
+       } 
+    }
+}
+```
+
+# Code
+```java []
+class Solution {
+    public void reverseString(char[] s) {
+     StringBuilder sb = new StringBuilder();
+     sb.append(s);
+     sb.reverse();
+     for(int i =0;i<s.length;i++){
+        s[i] = sb.charAt(i);
+     }
+    }
+}
+```
+# Code
+```java []
+class Solution {
+    public void reverseString(char[] s) {
+    Stack<Character> st = new Stack<>();
+    for(char ch:s){
+        st.push(ch);
+    }
+    for(int i =0;i<s.length;i++){
+        s[i] = st.pop();
+    }
+    }
+}
+```
