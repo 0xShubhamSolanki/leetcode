@@ -1,0 +1,36 @@
+class Solution {
+    public int totalMoney(int n) {
+     int tot =0;
+     int extra =n/7;
+     int rem = n%7;
+
+     for(int i =1;i<=extra;i++){
+        tot += 28+7*(i-1);
+     }
+     for(int j =0;j<rem;j++){
+        tot+= extra+1+j;
+     }
+     return tot;
+
+    }
+}
+Code
+class Solution {
+    public int totalMoney(int n) {
+        int fullWeeks = n / 7;
+        int remainingDays = n % 7;
+      
+        int total = 0;
+    
+        for (int i = 1; i <= fullWeeks; i++) {
+            total += 7 * i + 21;
+        }
+
+        for (int i = 1; i <= remainingDays; i++) {
+            total += fullWeeks + i;
+        }
+        
+        return total;
+    }
+}
+ 
