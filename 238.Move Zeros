@@ -1,0 +1,50 @@
+//Brute force TC-O(N)  sc-O(N)
+class Solution {
+    public void moveZeroes(int[] nums) {
+     int res[] = new int[nums.length];
+     int idx =0;
+     for(int num:nums){
+        if(num!=0){
+            res[idx] = num;
+            idx++;
+        }
+     }
+     for(int i =idx;i<nums.length;i++){
+        res[i] =0;
+     }
+     for(int i =0;i<nums.length;i++){
+        nums[i] = res[i];
+     }
+    }
+}
+//Effiient approch  TC -O(N) SC-O(1)
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int nonZeroPointer = 0; 
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[nonZeroPointer] = nums[i];
+                  if (i != nonZeroPointer) {
+                    nums[i] = 0; 
+                }
+                nonZeroPointer++; 
+            }
+        }
+    }
+}
+//Effient Approch Tc-O(N) SC-O(1)
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int nonZeroPointer = 0;  
+      
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[nonZeroPointer] = nums[i];
+                if (i != nonZeroPointer) {
+                    nums[i] = 0; 
+                }
+                nonZeroPointer++;  
+            }
+        }
+    }
+}
