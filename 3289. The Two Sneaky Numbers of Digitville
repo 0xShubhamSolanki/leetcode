@@ -1,0 +1,36 @@
+class Solution {
+    public int[] getSneakyNumbers(int[] nums) {
+        HashMap<Integer, Integer> hm = new HashMap<>(); 
+        int[] arr = new int[2];
+        int count = 0;  
+
+        for (int i = 0; i < nums.length; i++) {
+            hm.put(nums[i], hm.getOrDefault(nums[i], 0) + 1);  
+        }
+        for (int key : hm.keySet()) {
+            if (hm.get(key) == 2) {
+                arr[count] = key;
+                count++;
+            }
+        }
+        return arr;
+    }
+}
+
+class Solution {
+    public int[] getSneakyNumbers(int[] nums) {
+     int n = nums.length - 2; 
+        int[] freq = new int[n];
+        int[] result = new int[2];
+        int index = 0;
+        
+        for (int num : nums) {
+            freq[num]++;
+            if (freq[num] == 2) {
+                result[index++] = num;
+                if (index == 2) break;
+            }
+        }
+        return result;
+    }
+}
