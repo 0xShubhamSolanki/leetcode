@@ -1,0 +1,20 @@
+class Solution {
+    public int minCost(String colors, int[] neededTime) {
+     int curr =1;
+     int prev =0;
+     int res =0;
+     char[] cArr = colors.toCharArray();
+     while(curr<cArr.length){
+      if(cArr[curr]  ==cArr[prev]){
+        res += Math.min(neededTime[curr],neededTime[prev]);
+        if(neededTime[curr] >neededTime[prev]){
+            prev = curr;
+        }
+      }else{
+        prev = curr;
+      }
+      curr= curr+1;
+     }   
+     return res;
+    }
+}
