@@ -1,0 +1,15 @@
+//tc -O(N) sc-O(1)
+class Solution {
+    int mod = 1000000007;
+    public int numOfWays(int n) {
+        long two =6;
+        long three = 6;
+        for(int i =2;i<=n;i++){
+            long nextTwo = (3*two +2*three)%mod;
+            long nextThree = (2*two + 2*three)%mod;
+            two = nextTwo;
+            three = nextThree;
+        }
+        return (int)(two+three)%mod;
+    }
+}
